@@ -9,9 +9,10 @@ class CustomerSearch extends Component {
     super();
     this.url = props.url;
     this.state = {
-      customers: []
+      customers: [],
     }
   }
+
   componentDidMount() {
     axios.get(this.url + 'customers')
       .then(response => {
@@ -20,21 +21,20 @@ class CustomerSearch extends Component {
           return (
             <Customer key={i} {...customer} />
           )
-        
         });
-
         this.setState({
           customers
         })
-        
-      
       });
   }
+
+
   render() {
-  
     return (
       <div>
-        WORKS
+        <header>
+          Customers
+        </header>
         {this.state.customers}
       </div>
     )
@@ -45,4 +45,5 @@ class CustomerSearch extends Component {
 CustomerSearch.propTypes = {
 url: PropTypes.string.isRequired
 }
+
 export default CustomerSearch;

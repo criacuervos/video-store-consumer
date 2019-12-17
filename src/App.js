@@ -4,7 +4,11 @@ import RentalLibrary from './components/RentalLibrary';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
+import CustomerSearch from './components/CustomerSearch';
+const MOVIEDB_KEY = process.env.MOVIEDB_KEY;
+const url = 'http://localhost:3000/';
 
 class App extends Component {
   
@@ -23,11 +27,24 @@ class App extends Component {
                 <Nav.Link>
                   Search All Movies
                 </Nav.Link>
-                <Nav.Link>
-                  List of Customers
+              <Nav.Link>
+                  <Link to='/customers'>
+                    List of Customers
+                  </Link>
                 </Nav.Link>
               </Nav>
           </Navbar>
+          <Switch>
+            <Route path='/customers'>
+              <CustomerSearch url={url} />
+            </Route>
+            <Route path='/rentals'>
+              <div>
+                WE'RE IN THE ROUTE PATH!
+              </div>
+              <RentalLibrary/>
+            </Route>
+          </Switch>
           <header className="header">
           <h1 className="header__h1">
             <span className="header__text">

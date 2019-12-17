@@ -5,7 +5,7 @@ import './Movie.css'
 import axios from 'axios';
 
 const Movie = (props) => {
-  const { url, id, title, overview, releaseDate, imageURL, inventory, externalId } = props;
+  const { inRentalLibrary, url, id, title, overview, releaseDate, imageURL, inventory, externalId } = props;
 
   const addMovie = () => {
     axios.post(url + 'movies', {title, overview, releaseDate, inventory})
@@ -15,6 +15,13 @@ const Movie = (props) => {
     })
   }
 
+  const movieButton = () => {
+    if (!inRentalLibrary) {
+      return (
+        <button onClick={addMovie}>Add To Rental Library</button>
+      )
+    }
+  }
   return (
     <section className='card'>
       <div className="card__content">
@@ -23,7 +30,7 @@ const Movie = (props) => {
         <p className="card__content-date"> Released: {releaseDate}</p>
         <p className="card__content-overview">{overview}</p>
       </div>
-      <button onClick={addMovie}>Add To Rental Library</button>
+      {movieButton()}
     </section>
   )
 }

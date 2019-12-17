@@ -1,0 +1,41 @@
+.card {
+  background-color: tomato;
+  padding: 1em;
+  margin: 0.5rem;
+
+  min-height: 250px;
+  min-width: 225px;
+  flex-basis: 25%;
+
+  border-radius: 5px;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  align-items: center;
+}
+
+.card__content {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  text-align: center;
+  font-weight: 100;
+  overflow: hidden;
+}
+
+.card__content-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size:2rem;
+}
+
+.card__content-overview {
+  font-size: 1rem;
+}
+
+.card__content-title, .card__content-overview {
+  padding: 0;
+  margin: 0;
+}

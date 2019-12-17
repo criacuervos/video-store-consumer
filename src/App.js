@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import RentalLibrary from './components/RentalLibrary';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import CustomerSearch from './components/CustomerSearch';
 const MOVIEDB_KEY = process.env.MOVIEDB_KEY;
 const url = 'http://localhost:3000/';
 
@@ -25,36 +30,43 @@ class App extends Component {
     
   }
 
-  componentDidMount() {
-    this.getSpecificMovie('Jaws 3-D');
-  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
-          <p>
-            All the Get/Search requests:
-          </p>
-          <p>
-            Get list of movies:
-            <code>GET /movies</code>
-          </p>
-          <p>
-            Get a specific movie:
-            <code>GET /movies?query=Psycho</code>
-          </p>
-          <p>
-            {this.state.searchResults.length > 0 ? this.state.searchResults[0].title : 'none!'}
-          </p>
-        </div>
-      </div>
+      <Router>
+        <section>
+          <Navbar bg="light" sticky="top">
+            <Navbar.Brand>
+              <Link to={`/home`}> Home </Link>
+            </Navbar.Brand>
+              <Nav className="mr-auto">
+                <Nav.Link>
+                  Rental Library
+                </Nav.Link>
+                <Nav.Link>
+                  Search All Movies
+                </Nav.Link>
+                <Link to='/customers'>
+                  List of Customers
+                </Link>
+              </Nav>
+          </Navbar>
+          <Switch>
+            <Route path='/customers'>
+              <CustomerSearch url={url} />
+            </Route>
+          </Switch>
+          <header className="header">
+          <h1 className="header__h1">
+            <span className="header__text">
+            Welcome to the Video Store 🎥 
+            </span>
+          </h1>
+          </header>
+          <div>
+            <RentalLibrary />
+          </div>
+        </section>
+      </Router>
     );
   }
 }

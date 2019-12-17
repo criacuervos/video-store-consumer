@@ -6,7 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
-import CustomerSearch from './components/CustomerSearch';
+import CustomerList from './components/CustomerList';
+import MovieSearch from './components/MovieSearch';
 const MOVIEDB_KEY = process.env.MOVIEDB_KEY;
 const url = 'http://localhost:3000/';
 
@@ -25,7 +26,9 @@ class App extends Component {
                   <Link to={`/rentals`}>Rental Library</Link>
                 </Nav.Link>
                 <Nav.Link>
-                  Search All Movies
+                  <Link to={'/moviesearch'}>
+                    Search All Movies
+                  </Link>
                 </Nav.Link>
               <Nav.Link>
                   <Link to='/customers'>
@@ -36,7 +39,10 @@ class App extends Component {
           </Navbar>
           <Switch>
             <Route path='/customers'>
-              <CustomerSearch url={url} />
+              <CustomerList url={url} />
+            </Route>
+            <Route path='/moviesearch'>
+              <MovieSearch url={url} />
             </Route>
             <Route path='/rentals'>
               <div>

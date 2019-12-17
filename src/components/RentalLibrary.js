@@ -45,6 +45,7 @@ class RentalLibrary extends Component {
                 id={movie.id}
                 title={movie.title}
                 overview={movie.overview}
+                imageURL={movie.image_url}
               />;
       });
     return (

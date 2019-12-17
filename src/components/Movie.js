@@ -1,9 +1,19 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './Movie.css'
+import axios from 'axios';
 
 const Movie = (props) => {
-  const {id, title, overview, releaseDate, imageURL, inventory, externalId} = props;
+  const { url, id, title, overview, releaseDate, imageURL, inventory, externalId } = props;
+
+  const addMovie = () => {
+    axios.post(url + 'movies', {title, overview, releaseDate, inventory})
+      .then(response => {
+        console.log("success");
+        console.log(response.data);        
+    })
+  }
 
   return (
     <section className='card'>
@@ -13,6 +23,7 @@ const Movie = (props) => {
         <p className="card__content-date"> Released: {releaseDate}</p>
         <p className="card__content-overview">{overview}</p>
       </div>
+      <button onClick={addMovie}>Add To Rental Library</button>
     </section>
   )
 }

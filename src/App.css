@@ -17,7 +17,6 @@ h1, h2 {
 
 .header__h1 {
   margin: auto 0;
-
   text-align: center;
 }
 
@@ -30,6 +29,6 @@ h1, h2 {
   text-transform: uppercase;
   font-weight: 800;
   font-size: 3rem;
-
   transform: rotate(-3deg) skew(-3deg);
 }
+

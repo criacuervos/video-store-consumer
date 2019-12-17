@@ -46,6 +46,7 @@ class RentalLibrary extends Component {
                 title={movie.title}
                 overview={movie.overview}
                 imageURL={movie.image_url}
+                releaseDate={(movie.release_date)}
               />;
       });
     return (
@@ -57,7 +58,6 @@ class RentalLibrary extends Component {
         </div>
       </section>
     )
-
 
   }
 }

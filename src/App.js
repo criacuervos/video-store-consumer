@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Movie from './components/Movie';
+import RentalLibrary from './components/RentalLibrary';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <section>
+        <header className="header">
+        <h1 className="header__h1">
+          <span className="header__text">
+          Welcome to the Video Store 🎥 
+          </span>
+        </h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <div>
+          <RentalLibrary />
+        </div>
+      </section>
     );
   }
 }

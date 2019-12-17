@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 class App extends Component {
+  
   render() {
     return (
       <Router>
@@ -17,7 +18,7 @@ class App extends Component {
             </Navbar.Brand>
               <Nav className="mr-auto">
                 <Nav.Link>
-                  Rental Library
+                  <Link to={`/rentals`}>Rental Library</Link>
                 </Nav.Link>
                 <Nav.Link>
                   Search All Movies

@@ -14,6 +14,21 @@ const url = 'http://localhost:3000/';
 
 class App extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      selectedMovie: '',
+      selectedCustomer: ''
+    }
+  }
+
+  selectMovie = (movieId) => {
+    console.log(movieId);
+    this.setState({
+      selectedMovie: movieId
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -52,7 +67,7 @@ class App extends Component {
             </Route>
 
             <Route path='/rental-library'>
-              <RentalLibrary/>
+              <RentalLibrary selectMovieCallback={this.selectMovie}/>
             </Route>
 
             <Route path='/'>

@@ -19,7 +19,7 @@ class MovieSearch extends Component {
         let { movies } = this.state;
         movies = response.data.map((movie, i) => {
           return (
-            <Movie key={i} inRentalLibrary={false} {...movie} />
+            <Movie key={i} selectMovieCallback={undefined} inRentalLibrary={false} {...movie} />
           )
         });
         this.setState({

@@ -32,10 +32,8 @@ class App extends Component {
           // a rental id is added as a key
           // the key change is what triggers the state to change in the child component
           // there is probably a better way to solve this
-          rentalId: selectedCustomer.id
-        })
-        console.log(selectedCustomer);
-        
+          rentalKey: selectedCustomer.id
+        })        
       })    
   }
   
@@ -50,7 +48,7 @@ class App extends Component {
           // a rental id is added as a key
           // the key change is what triggers the state to change in the child component
           // there is probably a better way to solve this
-          rentalId: selectedMovie[0].id
+          rentalKey: selectedMovie[0].id
         })
       })    
   }
@@ -78,7 +76,14 @@ class App extends Component {
                   </Link>
                 </Nav.Link>
             </Nav>
-            <Rental key={this.state.rentalId} movie={this.state.selectedMovie} customer={this.state.selectedCustomer} />
+
+            {/* this displays the current movie & customer in Rental */}
+            <Rental
+              url={url}
+              key={this.state.rentalKey}
+              movie={this.state.selectedMovie}
+              customer={this.state.selectedCustomer} />
+
           </Navbar>
           <Switch>
             <Route path='/home'>

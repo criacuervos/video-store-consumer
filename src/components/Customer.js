@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Customer.css';
 
 const Customer = (props) => {
-  const { id, name, registeredAt, address, city, state, postalCode, phone, accountCredit, moviesCheckedOutCount } = props;
+  const { selectCustomerCallback, id, name, registeredAt, address, city, state, postalCode, phone, accountCredit, moviesCheckedOutCount } = props;
 
   return (
     <section className='card'>
@@ -31,6 +31,7 @@ const Customer = (props) => {
 
         </ul>
       </div>
+      <button onClick={() => { selectCustomerCallback(props.id) }}>Select Customer</button>
     </section>
   )
 

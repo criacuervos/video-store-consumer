@@ -17,14 +17,17 @@ class Rental extends Component {
     }
     axios.post(this.props.url + 'rentals/' + this.props.movie.title + '/check-out/', params)
     .then(response => {
-      console.log("success")
-
+      console.log("successfully checked out");
+      this.setState({
+        returned: false,
+      });
+      this.props.resetRentalSelections();
     })
   }
 
   checkOutButton = () => {
     if (this.props.movie.id && this.props.customer.id){
-      return (<button onClick={this.props.checkOut}> Check out!</button>)
+      return (<button onClick={this.checkOut}> Check out!</button>)
     }
   }
 
@@ -50,13 +53,14 @@ class Rental extends Component {
   }
 
   // this is how we remove a rental
-  returnRentalButton = () => {
-    if (this.props.returned === false) {
-      return (
-        <button onClick={this.returnRental}>Return</button>
-      )
-    }
-  }
+  // returnRentalButton = () => {
+  //   if (this.state.returned === false) {
+  //     return (
+  //       <button onClick={this.returnRental}>Return</button>
+  //     )
+  //   }
+  // }
+  
   returnRental = () => {
     let params = {
       movie_id: this.props.movie.id,
@@ -74,7 +78,6 @@ class Rental extends Component {
         {this.rentalMovie()}
         {this.rentalCustomer()}
         {this.checkOutButton()}
-        {this.returnRentalButton()}
       </div>
     )
   }

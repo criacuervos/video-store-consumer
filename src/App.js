@@ -45,6 +45,12 @@ class App extends Component {
       })    
   }
 
+  resetRentalSelections = () => {
+    this.setState({
+      selectedMovie: '',
+      selectedCustomer: ''
+    })
+  }
   render() {
     return (
       <Router>
@@ -72,6 +78,7 @@ class App extends Component {
             {/* this displays the current movie & customer in Rental */}
             <Rental
               url={url}
+              resetRentalSelections={this.resetRentalSelections}
               movie={this.state.selectedMovie}
               customer={this.state.selectedCustomer} />
 

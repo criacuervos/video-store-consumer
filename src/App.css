@@ -32,3 +32,9 @@ h1, h2 {
   transform: rotate(-3deg) skew(-3deg);
 }
 
+img.img-icon {
+  margin: 0;
+  padding-left: 4px;
+  max-height: 30px;
+  width: auto;
+}

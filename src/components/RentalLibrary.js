@@ -54,6 +54,13 @@ class RentalLibrary extends Component {
     return (
       <section>
         <div>
+          <header className="header">
+            <h1 className="header__h1">
+              <span className="header__text">
+                Rental Library
+              </span>
+            </h1>
+          </header>
           <div className='library'>
             {movies}
           </div>
@@ -65,6 +72,7 @@ class RentalLibrary extends Component {
 }
 
 RentalLibrary.propTypes = {
+  selectMovieCallback: PropTypes.func.isRequired
 }
 
 export default RentalLibrary;

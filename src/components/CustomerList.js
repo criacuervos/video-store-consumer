@@ -9,6 +9,7 @@ class CustomerSearch extends Component {
   constructor(props) {
     super();
     this.url = props.url;
+    this.selectCustomerCallback = props.selectCustomerCallback;
     this.state = {
       customers: [],
     }
@@ -20,7 +21,7 @@ class CustomerSearch extends Component {
         let { customers } = this.state;
         customers = response.data.map((customer, i) => {
           return (
-            <Customer key={i} {...customer} />
+            <Customer key={i} selectCustomerCallback={this.selectCustomerCallback} {...customer} />
           )
         });
         this.setState({

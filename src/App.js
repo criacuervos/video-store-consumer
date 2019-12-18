@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import CustomerList from './components/CustomerList';
 import MovieSearch from './components/MovieSearch';
+import Rental from './components/Rental';
 const MOVIEDB_KEY = process.env.MOVIEDB_KEY;
 const url = 'http://localhost:3000/';
 
@@ -22,11 +23,36 @@ class App extends Component {
     }
   }
 
+  selectCustomer = (customerId) => {
+    axios.get(url + 'customers/' + customerId)
+      .then(response => {
+        const selectedCustomer = response.data;
+        this.setState({
+          selectedCustomer: selectedCustomer,
+          // a rental id is added as a key
+          // the key change is what triggers the state to change in the child component
+          // there is probably a better way to solve this
+          rentalId: selectedCustomer.id
+        })
+        console.log(selectedCustomer);
+        
+      })    
+  }
+  
   selectMovie = (movieId) => {
-    console.log(movieId);
-    this.setState({
-      selectedMovie: movieId
-    })
+    axios.get(url + 'movies')
+      .then(response => {
+        const selectedMovie = response.data.filter(movie => {
+          return movie.id === movieId
+        })        
+        this.setState({
+          selectedMovie: selectedMovie[0],
+          // a rental id is added as a key
+          // the key change is what triggers the state to change in the child component
+          // there is probably a better way to solve this
+          rentalId: selectedMovie[0].id
+        })
+      })    
   }
 
   render() {
@@ -51,7 +77,8 @@ class App extends Component {
                     List of Customers
                   </Link>
                 </Nav.Link>
-              </Nav>
+            </Nav>
+            <Rental key={this.state.rentalId} movie={this.state.selectedMovie} customer={this.state.selectedCustomer} />
           </Navbar>
           <Switch>
             <Route path='/home'>
@@ -59,7 +86,7 @@ class App extends Component {
             </Route>
             
             <Route path='/customers'>
-              <CustomerList url={url} />
+              <CustomerList url={url} selectCustomerCallback={this.selectCustomer}/>
             </Route>
 
             <Route path='/moviesearch'>

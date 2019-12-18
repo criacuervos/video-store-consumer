@@ -3,15 +3,6 @@ ul {
   list-style-type: none;
 }
 
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Raleway', sans-serif;
-}
-
 h1, h2 {
   font-family: 'Permanent Marker', Helvetica, sans-serif;
 }

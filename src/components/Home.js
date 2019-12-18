@@ -14,6 +14,7 @@ const Home = () => {
       </header>
       <div>
         <p> HOME PAGE</p>
+        <RentalLibrary/>
       </div>
     </div>
   )

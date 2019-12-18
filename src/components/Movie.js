@@ -5,10 +5,12 @@ import './Movie.css'
 import axios from 'axios';
 
 const Movie = (props) => {
-  const { selectMovieCallback, inRentalLibrary, url, id, title, overview, releaseDate, imageURL, inventory, externalId } = props;
+
+  const { selectMovieCallback, inRentalLibrary, url, id, title, overview, release_date, image_url, inventory, externalId } = props;
+
 
   const addMovie = () => {
-    axios.post(url + 'movies', {title, overview, releaseDate, inventory})
+    axios.post(url + 'movies', {title, overview, release_date, inventory})
       .then(response => {
         console.log("success");
         console.log(response.data);        
@@ -29,9 +31,9 @@ const Movie = (props) => {
   return (
     <section className='card'>
       <div className="card__content">
-        <img src={imageURL}></img>
+        <img src={image_url}></img>
         <p className="card__content-title">{title}</p>
-        <p className="card__content-date"> Released: {releaseDate}</p>
+        <p className="card__content-date"> Released: {release_date}</p>
         <p className="card__content-overview">{overview}</p>
       </div>
       {movieButton()}

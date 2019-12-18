@@ -38,16 +38,16 @@ const Customer = (props) => {
 }
 
 Customer.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  registeredAt: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
-  postalCode: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
-  accountCredit: PropTypes.number.isRequired,
-  moviesCheckedOutCount: PropTypes.number.isRequired
+  id: PropTypes.number,
+  name: PropTypes.string,
+  registeredAt: PropTypes.string,
+  address: PropTypes.string,
+  city: PropTypes.string,
+  state: PropTypes.string,
+  postalCode: PropTypes.string,
+  phone: PropTypes.string,
+  accountCredit: PropTypes.number,
+  moviesCheckedOutCount: PropTypes.number,
 
 }
 

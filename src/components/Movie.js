@@ -8,7 +8,6 @@ const Movie = (props) => {
 
   const { selectMovieCallback, inRentalLibrary, url, id, title, overview, release_date, image_url, inventory, externalId } = props;
 
-
   const addMovie = () => {
     axios.post(url + 'movies', {title, overview, release_date, inventory})
       .then(response => {
@@ -42,11 +41,11 @@ const Movie = (props) => {
 }
 
 Movie.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  imageURL: PropTypes.string.isRequired,
-  releaseDate: PropTypes.string.isRequired
+  id: PropTypes.number,
+  title: PropTypes.string,
+  overview: PropTypes.string,
+  imageURL: PropTypes.string,
+  releaseDate: PropTypes.string,
 }
 
 export default Movie;

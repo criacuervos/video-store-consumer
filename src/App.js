@@ -29,10 +29,6 @@ class App extends Component {
         const selectedCustomer = response.data;
         this.setState({
           selectedCustomer: selectedCustomer,
-          // a rental id is added as a key
-          // the key change is what triggers the state to change in the child component
-          // there is probably a better way to solve this
-          rentalKey: selectedCustomer.id
         })        
       })    
   }
@@ -45,10 +41,6 @@ class App extends Component {
         })        
         this.setState({
           selectedMovie: selectedMovie[0],
-          // a rental id is added as a key
-          // the key change is what triggers the state to change in the child component
-          // there is probably a better way to solve this
-          rentalKey: selectedMovie[0].id
         })
       })    
   }
@@ -80,7 +72,6 @@ class App extends Component {
             {/* this displays the current movie & customer in Rental */}
             <Rental
               url={url}
-              key={this.state.rentalKey}
               movie={this.state.selectedMovie}
               customer={this.state.selectedCustomer} />
 

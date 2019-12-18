@@ -72,7 +72,7 @@ class RentalLibrary extends Component {
 }
 
 RentalLibrary.propTypes = {
-  selectMovieCallback: PropTypes.func.isRequired
+  selectMovieCallback: PropTypes.func
 }
 
 export default RentalLibrary;

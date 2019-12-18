@@ -8,7 +8,7 @@ import './RentalLibrary.css';
 class RentalLibrary extends Component {
   constructor(props){
     super(props);
-
+    this.selectMovieCallback = props.selectMovieCallback;
     this.state = {
       movies: [],
     };
@@ -41,6 +41,7 @@ class RentalLibrary extends Component {
   render(){
     const movies = this.state.movies.map((movie, i) => {
       return <Movie 
+                selectMovieCallback={this.selectMovieCallback}
                 inRentalLibrary={true}
                 key={i}
                 id={movie.id}

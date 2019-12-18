@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Customer from './Customer.js';
+import './CustomerList.css';
 import axios from 'axios';
 
 class CustomerSearch extends Component {
@@ -32,10 +33,16 @@ class CustomerSearch extends Component {
   render() {
     return (
       <div>
-        <header>
-          Customers
-        </header>
-        {this.state.customers}
+      <header className="header">
+        <h1 className="header__h1">
+          <span className="header__text">
+            Customers
+          </span>
+        </h1>
+      </header>
+        <div className="library">
+          {this.state.customers}
+        </div>
       </div>
     )
   }

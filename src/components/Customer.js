@@ -7,8 +7,7 @@ const Customer = (props) => {
 
   return (
     <section className='card'>
-      <div className='card__content'>
-
+      <div className='card__content-header'>
           Customer {id}
         <ul className='card__content'>
           <li>

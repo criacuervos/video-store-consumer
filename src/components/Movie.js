@@ -5,7 +5,7 @@ import './Movie.css'
 import axios from 'axios';
 
 const Movie = (props) => {
-  const { inRentalLibrary, url, id, title, overview, releaseDate, imageURL, inventory, externalId } = props;
+  const { selectMovieCallback, inRentalLibrary, url, id, title, overview, releaseDate, imageURL, inventory, externalId } = props;
 
   const addMovie = () => {
     axios.post(url + 'movies', {title, overview, releaseDate, inventory})
@@ -19,6 +19,10 @@ const Movie = (props) => {
     if (!inRentalLibrary) {
       return (
         <button onClick={addMovie}>Add To Rental Library</button>
+      )
+    } else {
+      return (
+        <button onClick={() => { selectMovieCallback(props.id) }}>Select Movie To Rent</button>
       )
     }
   }

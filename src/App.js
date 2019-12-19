@@ -10,6 +10,7 @@ import axios from 'axios';
 import CustomerList from './components/CustomerList';
 import MovieSearch from './components/MovieSearch';
 import Rental from './components/Rental';
+import RentalList from './components/RentalList';
 const MOVIEDB_KEY = process.env.MOVIEDB_KEY;
 const url = 'http://localhost:3000/';
 
@@ -72,7 +73,12 @@ class App extends Component {
                   <Link to='/customers'>
                     List of Customers
                   </Link>
-                </Nav.Link>
+              </Nav.Link>
+              <Nav.Link>
+                  <Link to='/rentals'>
+                    List of Rentals
+                  </Link>
+              </Nav.Link>
             </Nav>
 
             {/* this displays the current movie & customer in Rental */}
@@ -98,6 +104,10 @@ class App extends Component {
 
             <Route path='/rental-library'>
               <RentalLibrary selectMovieCallback={this.selectMovie}/>
+            </Route>
+
+            <Route path='/rentals'>
+              <RentalList url={url}/>
             </Route>
 
             <Route path='/'>

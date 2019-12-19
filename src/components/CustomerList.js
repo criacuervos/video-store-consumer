@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Customer from './Customer.js';
 import './CustomerList.css';
 import axios from 'axios';
+import NewCustomerForm from './NewCustomerForm.js';
 
 class CustomerSearch extends Component {
 
@@ -42,6 +43,7 @@ class CustomerSearch extends Component {
         </h1>
       </header>
         <div className="library">
+          <NewCustomerForm url={this.url}/>
           {this.state.customers}
         </div>
       </div>

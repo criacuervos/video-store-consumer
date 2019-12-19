@@ -12,7 +12,7 @@ const Movie = (props) => {
     axios.post(url + 'movies', {title, overview, release_date, inventory})
       .then(response => {
         console.log("success");
-        console.log(response.data);        
+        console.log(response);        
     })
   }
 

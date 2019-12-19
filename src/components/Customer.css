@@ -45,3 +45,10 @@ h1, h2 {
 .form-control {
   font-size: 0.8rem;
 }
+
+.card__icon {
+  left: .3rem;
+  position: absolute;
+  text-align: left;
+  width: 100%;
+}

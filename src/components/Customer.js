@@ -1,16 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Customer.css';
+import axios from 'axios';
 
 const Customer = (props) => {
   const { selectCustomerCallback, id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count } = props;
 
+  // random color generator acquired from Stack Overflow
+  // https://stackoverflow.com/questions/1484506/random-color-generator
+  // retrieved on 12-19-2019
+  const getRandomColor = () => {
+    let letters = '0123456789ABCDEF';
+    let color = '';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  const customerIcon = () => {
+    // gravatar src: https://ui-avatars.com/
+    const customerImgUrl = 'https://ui-avatars.com/api/?name=' + name + '&background=' + getRandomColor() + '&color=' + getRandomColor();
+    return (
+      <img alt='user-icon' src={customerImgUrl} />
+    )
+  }
+  
   let registeredDate = new Date(registered_at).toDateString().substr(4);
 
   return (
     <section className='card'>
-      <div className='card__content-header'>
-        Customer {id}
+
+      <div className='card__header card__icon'>
+        {customerIcon()}
       </div>
         
         <ul className='card__content'>

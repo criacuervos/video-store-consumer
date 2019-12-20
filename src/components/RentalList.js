@@ -7,41 +7,57 @@ class RentalList extends Component {
   constructor(props){
     super(props);
     this.url = props.url;
-    this.returnRentalCallback = props.returnRentalCallback;
+    // this.returnRentalCallback = props.returnRentalCallback;
     this.state = {
-      rentals: [],
-    };
+      rentals: []
+    }
   }
 
-  componentDidMount () {
-    this.listRentals()
-  }
-
-  getCustomer(id) {
-    axios.get(this.url + '/customers/' + id)
+  getCustomer = (id) => {
+    return axios.get(this.url + '/customers/' + id)
       .then(response => {
-        console.log(response.data);
-        
-        return response.data
-      })
-  }
-  getMovie(id) {
-    axios.get(this.url + '/movies/id/' + id)
-      .then(response => {
-        console.log(response.data);
         return response.data
       })
   }
 
-getRentals = () => {
+  getMovie = (id) => {
+    return axios.get(this.url + '/movies/id/' + id)
+      .then(response => {
+        return response.data
+      })
+  }
+  
+  componentDidMount() {
+    
   axios.get(this.url + 'rentals')
     .then(response => {
-      const rentals = response.data.map((rental, i) => {
-        rental.customer = this.getCustomer(rental.customer_id);
-        rental.movie = this.getMovie(rental.movie_id);
-      })
+      const rentalList = response.data.map((rental, i) => {
+        const updatedRentals = this.state.rentals;
+        rental.customer = {  };
+        rental.movie = {  };
+        updatedRentals.push(rental);
+        this.getCustomer(rental.customer_id).then(
+          (result)=> { 
+            updatedRentals[i].customer = result;
+            this.setState({
+              rentals: updatedRentals
+            })
+          }
+        );
+        this.getMovie(rental.movie_id).then(
+          (result)=> { 
+            updatedRentals[i].movie = result;
+            this.setState({
+              rentals: updatedRentals
+            })
+          }
+        );;
+        rental.dueDate = new Date(rental.due_date).toDateString();
+        
+        return rental;
+      })      
       this.setState({
-        rentals: rentals
+        rentals: rentalList
       })
     })
     .catch((error) => {
@@ -49,36 +65,31 @@ getRentals = () => {
         error: 'Sorry, something went wrong!'
       });
     })
-  return this.listRentals;
-}
+  }
 
-  displayRentals = this.getRentals();
-  componentDidMount() {
-    this.getRentals()
-  }
-  
-  listRentals = () => {
-    this.state.rentals.forEach((rental, i) => {
-      return (
-        <tr key={i}>
-          <td>
-            {rental.customer.name}
-          </td>
-          <td>
-            {rental.movie.title}
-          </td>
-          <td>
-          {new Date(rental.due_date).toDateString()}
-          </td>
-          <td>
-            <button className="btn btn-outline-secondary">Return</button>
-          </td>
-        </tr>
-      )
-    })
-  }
 
   render() {
+    
+    const listRentals = this.state.rentals.map((rental, i) => {
+        return (
+          <tr key={i}>
+            <td>
+              Customer: {rental.customer.name}
+            </td>
+            <td>
+              Movie: {rental.movie.title}
+            </td>
+            <td>
+              {rental.dueDate}
+            </td>
+            <td>
+              <button className="btn btn-outline-secondary">Return</button>
+            </td>
+          </tr>
+        )
+      })
+
+    
     return (
       <div>
         <Table>
@@ -97,7 +108,7 @@ getRentals = () => {
           </th>
           </tr>
           <tbody>
-            {this.displayRentals}
+            {listRentals}
           </tbody>
         </Table>
       </div>
